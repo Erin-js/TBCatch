@@ -4,6 +4,20 @@ Buildless HTML/CSS/JS with a Python standard-library HTTP server. The phone meas
 
 ## Existing laptop
 
+For UI work without model weights, datasets or ML libraries:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\prototype\start.ps1 -UiOnly
+# Or use any installed Python directly (no virtual environment required):
+python .\prototype\server.py --ui-only
+```
+
+Open http://localhost:8765. This mode serves the UI and camera/microphone controls,
+reports preview status and disables prediction and the model demo. It never loads
+the inference module or prepares models. Refresh the browser after editing UI files.
+Use `-UiOnly -Phone` with the launcher for local HTTPS phone access; certificate
+creation still requires cryptography. Run without `-UiOnly` for normal inference.
+
 From the project root:
 
 ```powershell

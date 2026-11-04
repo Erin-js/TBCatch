@@ -1,6 +1,6 @@
 'use strict';
 const $=id=>document.getElementById(id);
-let pulse=null,audio=null,result=null,modelReady=false,busy=false;
+let pulse=null,audio=null,result=null,modelReady=false,busy=false,uiPreview=false;
 let ppg=null,pulseTimer=null,pulseAbort=null,pulseStarted=0,goodWindows=[],waveValues=[],pulseAttempt=0;
 let recorder=null,micStream=null,recordTimer=null,recordStarted=0,recordAttempt=0,previewUrl=null,audioAttempt=0;
 const apiKey=document.querySelector('meta[name="api-key"]').content;
@@ -17,7 +17,8 @@ function go(step){
 }
 function update(){
   $('analyze-button').disabled=busy||!modelReady||!pulse||!audio||!$('cough-confirm').checked;
-  $('analyze-hint').textContent=!modelReady?'Waiting for the local model to be ready.':(!pulse||!audio||!$('cough-confirm').checked)?'Add your pulse, cough audio, and recording confirmation.':'Ready for analysis on the local server.';
+  $('demo-button').disabled=busy||uiPreview;
+  $('analyze-hint').textContent=uiPreview?'Pratinjau UI: prediksi dan demo model tidak tersedia.':!modelReady?'Waiting for the local model to be ready.':(!pulse||!audio||!$('cough-confirm').checked)?'Add your pulse, cough audio, and recording confirmation.':'Ready for analysis on the local server.';
   $('next-audio').hidden=!pulse;
   $('summary-pulse').textContent=pulse?`${pulse.bpm} BPM · ${pulse.source==='demo'?'demo':pulse.source==='manual'?'manual device reading':'camera'}`:'Not available yet';
   $('summary-audio').textContent=audio?`${audio.duration.toFixed(1)} detik · ${audio.source==='demo'?'demo':'your recording'}`:'Not available yet';
@@ -166,7 +167,7 @@ async function demo(){
 }
 function reset(){if(busy)return;stopPulse();cancelRecording();pulse=null;clearAudio();$('pulse-panel').querySelector('details').open=false;$('bpm').textContent='—';$('pulse-tag').textContent='Not measured';$('pulse-tag').classList.remove('success');$('audio-upload').value='';$('record-time').textContent='Microphone not recording';$('pulse-guidance').textContent='Measurement takes at least 30 seconds and requires a stable signal.';$('pulse-progress').value=0;$('manual-bpm').value='';$('questionnaire').reset();waveValues=[];drawWave();for(const id of ['pulse-error','audio-error','result-error'])error(id);update();go('pulse');}
 async function health(){
-  try{const r=await fetch('/api/health');if(!r.ok)throw Error();const d=await r.json();modelReady=d.ready;const el=$('server-status');el.replaceChildren();const dot=document.createElement('span');dot.className='status-dot';el.append(dot,document.createTextNode(d.error||d.phase));el.classList.toggle('ready',d.ready);el.classList.toggle('failed',!!d.error);}
+  try{const r=await fetch('/api/health');if(!r.ok)throw Error();const d=await r.json();modelReady=d.ready;uiPreview=d.ui_only===true;const el=$('server-status');el.replaceChildren();const dot=document.createElement('span');dot.className='status-dot';el.append(dot,document.createTextNode(d.error||d.phase));el.classList.toggle('ready',d.ready);el.classList.toggle('failed',!!d.error);}
   catch{modelReady=false;$('server-status').textContent='Server disconnected. Check the project laptop.';}update();
 }
 document.querySelectorAll('[data-step]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.step)));

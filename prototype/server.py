@@ -3,11 +3,19 @@ from pathlib import Path
 from http.server import BaseHTTPRequestHandler,ThreadingHTTPServer
 import argparse,base64,json,mimetypes,secrets,socket,ssl,threading
 from urllib.parse import urlsplit
-from inference import Predictor,PACKAGE
 
 HERE=Path(__file__).resolve().parent
 TOKEN=secrets.token_urlsafe(32)
-predictor=Predictor()
+predictor=None
+
+class PreviewPredictor:
+    """UI preview uses only the standard library and never loads model assets."""
+    ready=False
+    error=None
+    def __init__(self):self.lock=threading.Lock()
+    def status(self):
+        return dict(ready=False,error=None,ui_only=True,
+                    phase='Pratinjau UI aktif — prediksi tidak tersedia')
 MAX_BODY=8_500_000
 ALLOWED_HOSTS={'localhost','127.0.0.1','::1',socket.gethostname().lower()}
 try:ALLOWED_HOSTS.update(socket.gethostbyname_ex(socket.gethostname())[2])
@@ -38,7 +46,9 @@ class Handler(BaseHTTPRequestHandler):
         if urlsplit('//'+self.headers.get('Host','')).hostname not in ALLOWED_HOSTS:return self.send(421,{'error':'Server address is not allowed.'})
         path=urlsplit(self.path).path
         if path=='/api/health':return self.send(200,predictor.status())
-        if path=='/api/demo':return self.send(200,json.loads((HERE/'demo.json').read_text()))
+        if path=='/api/demo':
+            if isinstance(predictor,PreviewPredictor):return self.send(503,{'error':'Demo model tidak tersedia dalam mode pratinjau UI.'})
+            return self.send(200,json.loads((HERE/'demo.json').read_text()))
         if path in FILES:
             f=FILES[path]
             if not f.is_file():return self.send(404,{'error':'App asset not found.'})
@@ -69,7 +79,14 @@ class Handler(BaseHTTPRequestHandler):
 
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--host',default='127.0.0.1');parser.add_argument('--port',type=int,default=8765)
-    parser.add_argument('--cert');parser.add_argument('--key');parser.add_argument('--http-port',type=int);args=parser.parse_args()
+    parser.add_argument('--cert');parser.add_argument('--key');parser.add_argument('--http-port',type=int)
+    parser.add_argument('--ui-only',action='store_true',help='Preview the UI without model assets or ML dependencies')
+    args=parser.parse_args()
+    global predictor
+    if args.ui_only:predictor=PreviewPredictor()
+    else:
+        from inference import Predictor
+        predictor=Predictor()
     if bool(args.cert)!=bool(args.key):parser.error('Sediakan --cert dan --key bersamaan.')
     server=ThreadingHTTPServer((args.host,args.port),Handler)
     if args.cert:
@@ -80,9 +97,9 @@ def main():
         local=ThreadingHTTPServer(('127.0.0.1',args.http_port),Handler)
         threading.Thread(target=local.serve_forever,daemon=True).start()
         print(f'Untuk laptop: http://localhost:{args.http_port}',flush=True)
-    threading.Thread(target=predictor.initialize,daemon=True).start()
+    if not args.ui_only:threading.Thread(target=predictor.initialize,daemon=True).start()
     print(f'Buka {"https" if args.cert else "http"}://localhost:{args.port}',flush=True)
-    print('Model dimuat di latar belakang. Status terlihat di aplikasi. Ctrl+C untuk berhenti.',flush=True)
+    print('Pratinjau UI tanpa model. Prediksi dan demo model tidak tersedia. Ctrl+C untuk berhenti.' if args.ui_only else 'Model dimuat di latar belakang. Status terlihat di aplikasi. Ctrl+C untuk berhenti.',flush=True)
     try:server.serve_forever()
     except KeyboardInterrupt:pass
     finally:

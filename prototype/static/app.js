@@ -44,10 +44,10 @@ function clearAudio(){audioAttempt++;audio=null;invalidate();if(previewUrl)URL.r
 function drawWave(value){
   if(Number.isFinite(value)){waveValues.push(value);if(waveValues.length>280)waveValues.shift();}
   const c=$('pulse-wave'),ctx=c.getContext('2d');ctx.clearRect(0,0,c.width,c.height);
-  ctx.strokeStyle='#72080822';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(0,50);ctx.lineTo(c.width,50);ctx.stroke();
+  ctx.strokeStyle='#a3334522';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(0,50);ctx.lineTo(c.width,50);ctx.stroke();
   if(waveValues.length<3)return;
   const low=Math.min(...waveValues),span=Math.max(...waveValues)-low;if(span<1e-8)return;
-  ctx.strokeStyle='#a10728';ctx.lineWidth=2;ctx.beginPath();waveValues.forEach((v,i)=>{const x=i*c.width/279,y=85-(v-low)*70/span;i?ctx.lineTo(x,y):ctx.moveTo(x,y);});ctx.stroke();
+  ctx.strokeStyle='#a33345';ctx.lineWidth=2;ctx.beginPath();waveValues.forEach((v,i)=>{const x=i*c.width/279,y=85-(v-low)*70/span;i?ctx.lineTo(x,y):ctx.moveTo(x,y);});ctx.stroke();
 }
 function stopPulse(){
   pulseAttempt++;clearInterval(pulseTimer);pulseTimer=null;

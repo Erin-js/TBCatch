@@ -1,8 +1,13 @@
 # Mobile UI revision
 
-The supplied references inform the dark burgundy, cream panels, editorial serif
-headings, fine borders and arched image frames. Existing AI illustrations and
-their attribution are retained. No patient photos or new external assets added.
+The revised health references inform a white, soft red and maroon palette. White dominates the page; blush panels,
+maroon actions and rose illustrations follow the latest supplied reference.
+Green and teal are removed from the interface, live graph and SVG assets. Dark gradients are
+removed. Five original editable SVG illustrations replace the earlier raster
+illustrations: lungs/phone, pulse measurement, cough etiquette, health checklist
+and camera grip. A fourteen-symbol SVG sprite replaces decorative marks and UI
+glyphs; the favicon uses the lung mark. No patient photos or external image
+assets are used in the current interface.
 
 The Indonesian home page opens a separate screening surface at `#check`.
 The four steps are pulse, cough, questionnaire and result. Fixed bottom actions,
@@ -28,3 +33,8 @@ ignored `prototype/test-results/mobile-redesign/` directory.
 The older `design.cjs` and `e2e.cjs` describe the previous English three-step UI;
 use `ui_mobile.cjs` for the revised interface. Backend checks remain separate.
 No research source, fitted model, calibration or decision threshold was changed.
+
+Latest palette refinement: ivory/white remain the main page and task surfaces.
+The home hero and closing call-to-action use rich maroon with warm ivory text.
+Screening has a compact maroon header and controls on a light background.
+No dominant black background or green accents are introduced.

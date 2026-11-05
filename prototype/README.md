@@ -2,6 +2,20 @@
 
 Buildless HTML/CSS/JS with a Python standard-library HTTP server. The phone measures pulse locally; cough audio is analyzed on the laptop by frozen BEATs and two fixed CatBoost candidates. This is an investigational prototype, not the V5 selected TabPFN model or a clinically validated diagnostic app.
 
+## Vercel: UI preview only
+
+Import the Git repository and set **Root Directory** to `prototype/static`.
+Choose **Other** as the framework, leave Build/Install Commands empty, and use
+`.` for Output Directory. The `static/vercel.json` file records these settings.
+Push the current UI files and the two deployment files before importing or
+redeploying: Vercel builds the Git version, not uncommitted local files.
+
+The `/api/health` rewrite serves `preview-health.json`, enabling UI-only mode.
+Fictional UI examples remain labelled; no model prediction endpoint is deployed.
+Camera/microphone capture still depends on browser permissions and device support.
+Normal localhost inference continues to use `server.py` and its own health route.
+This configuration does not deploy Python, trained weights or the research data.
+
 ## Existing laptop
 
 For UI work without model weights, datasets or ML libraries:

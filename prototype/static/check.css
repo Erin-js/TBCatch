@@ -48,3 +48,10 @@ input,select{border-color:#D7C2BB;border-radius:12px;background:#fffdf9;color:va
 #preview-tools{border-color:var(--dust)}
 .preview-options button{background:#fffdf9;border-color:var(--line);color:var(--ink)}
 .busy{background:rgba(61,11,23,.92)}
+
+/* Tombol Tutup: pil krem yang jelas terlihat, bukan tautan polos. */
+.screen-top .exit{display:inline-flex;align-items:center;gap:.4rem;min-height:40px;padding:.4rem .95rem .4rem .8rem;border-radius:999px;background:var(--cream);color:var(--wine);font-size:.875rem;font-weight:600;text-decoration:none;transition:background .18s,transform .18s}
+.screen-top .exit::before{content:"\00D7";font-size:1.25rem;line-height:1;font-weight:500}
+.screen-top .exit:hover{background:#fff}
+.screen-top .exit:active{transform:scale(.97)}
+.screen-top .exit:focus-visible{outline:3px solid var(--pink);outline-offset:3px}

@@ -12,3 +12,39 @@
 #check{background:#fffdf9;color:#493039}.screen-top{background:#761b30;color:#fff7ed;border-color:#761b30}.screen-top .brand{color:#fff7ed}.screen-top .back{border-color:#d6a8a7}
 .dock{background:#fffdf9f5}.primary,.choices input:checked+span{background:#761b30;border-color:#761b30;color:white}.primary:hover{background:#611426}.secondary{color:#761b30;border-color:#a66a78}
 .panel h2{color:#761b30}.panel h2 em{color:#986473}.pulse-display{background:#f5ece7;border-color:#dfcbc3}.record-zone{background:#f5ece7;border-color:#dfcbc3}
+
+/* v3 — layar pemeriksaan mengikuti identitas "Dengarkan batukmu". */
+em{font-style:normal}
+#check{background:var(--cream);color:var(--ink);font-family:var(--font)}
+.screen-top{background:var(--wine);color:var(--cream);border-color:var(--wine)}
+.screen-top .brand{font-size:1.25rem;color:var(--cream)}
+.screen-top .brand img{width:34px;height:34px}
+.screen-top .back{border-color:rgba(246,238,227,.45);color:var(--cream)}
+.screen-top .exit{color:var(--cream)}
+.progress-head,.eyebrow{font-size:.75rem;letter-spacing:.04em;color:var(--muted)}
+.steps button{color:var(--muted);border-top-color:var(--line)}
+.steps button.active{border-color:var(--signal);color:var(--wine)}
+.steps button.done{border-color:var(--pink)}
+.panel h2{font-variation-settings:"opsz" 96;font-weight:600;letter-spacing:-.03em;line-height:1;color:var(--wine)}
+.panel h2 em{color:var(--dust)}
+.panel>p,.panel-title p{color:var(--ink)}
+.tag{border-color:var(--line);background:#fff8f0}
+.tag.success{background:#E6F2EF;border-color:var(--teal);color:#1F5F57}
+.pulse-display,.record-zone{background:#fff8f0;border-color:var(--line)}
+.pulse-reading strong{font-weight:600;letter-spacing:-.02em;color:var(--wine)}
+.record-symbol{color:var(--signal)}
+.dock{background:rgba(246,238,227,.94);border-color:var(--line)}
+.primary,.choices input:checked+span{background:var(--wine);border-color:var(--wine);color:var(--cream)}
+.primary:hover{background:var(--wine-rich)}
+.secondary{color:var(--wine);border-color:var(--dust)}
+input,select{border-color:#D7C2BB;border-radius:12px;background:#fffdf9;color:var(--ink)}
+.choices span{border-radius:12px;border-color:#D7C2BB}
+.result-box{background:#fff8f0;border-color:var(--line);border-radius:var(--r-md)}
+.result-box h3{font-variation-settings:"opsz" 48;letter-spacing:-.02em;color:var(--wine)}
+.screening-guidance h3{font-family:var(--font);font-weight:600}
+.next-step{background:#fff8f0;border-left-color:var(--signal)}
+.notice{background:#fff3e0;border-color:var(--mustard);color:#6B3F12}
+.small,.screen-note,.result-meta,.toolbar{color:var(--muted)}
+#preview-tools{border-color:var(--dust)}
+.preview-options button{background:#fffdf9;border-color:var(--line);color:var(--ink)}
+.busy{background:rgba(61,11,23,.92)}

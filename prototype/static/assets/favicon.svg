@@ -1,1 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none"><title>favicon</title><path d="M22 5v15l-6 5m10-20v15l6 5" stroke="#e47f89" stroke-width="3"/><path d="M20 18c-4-6-9-2-12 4S3 39 8 41c4 2 11-2 12-5zm8 0c4-6 9-2 12 4s5 17 0 19c-4 2-11-2-12-5z" fill="#f49b9f"/><path d="m18 25-5 8m17-8 5 8" stroke="#a84e65" stroke-width="2"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-8 -4 124 124" role="img" aria-label="TBCatch">
+  <defs>
+    <linearGradient id="tbc-l" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F6A9BA"/><stop offset=".48" stop-color="#D3263F"/><stop offset="1" stop-color="#8E1F38"/>
+    </linearGradient>
+    <linearGradient id="tbc-r" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F6A9BA"/><stop offset=".48" stop-color="#D3263F"/><stop offset="1" stop-color="#8E1F38"/>
+    </linearGradient>
+    <linearGradient id="tbc-t" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F6A9BA"/><stop offset="1" stop-color="#D3263F"/>
+    </linearGradient>
+    <rect id="tbc-bac" x="-6.5" y="-2.4" width="13" height="4.8" rx="2.4"/>
+  </defs>
+  <!-- trakea -->
+  <rect x="56.5" y="8" width="7" height="30" rx="3.5" fill="url(#tbc-t)"/>
+  <!-- paru -->
+  <path d="M51 36C38 33 22 46 16 66c-5 18-3 34 8 39 10 4 20 0 26-6 3-3 4-9 4-15V42c0-4-1-6-3-6Z" fill="url(#tbc-l)"/>
+  <path d="M69 36c13-3 29 10 35 30 5 18 3 34-8 39-10 4-20 0-26-6-3-3-4-9-4-15V42c0-4 1-6 3-6Z" fill="url(#tbc-r)"/>
+  <!-- bronkus (warna latar; ganti stroke bila latar berbeda) -->
+  <path d="M60 34c0 10-5 14-13 20M60 34c0 10 5 14 13 20" fill="none" stroke="#F6EEE3" stroke-width="3.4" stroke-linecap="round"/>
+  <!-- basil TB (berbentuk batang) yang terlepas -->
+  <g fill="#D3263F">
+    <use href="#tbc-bac" transform="translate(13 52) rotate(-35)"/>
+    <use href="#tbc-bac" transform="translate(9 70) rotate(20)" opacity=".85"/>
+    <use href="#tbc-bac" transform="translate(4 58) rotate(70)" opacity=".6" fill="#761B30"/>
+    <use href="#tbc-bac" transform="translate(6 86) rotate(-50)" opacity=".7"/>
+    <use href="#tbc-bac" transform="translate(-2 74) rotate(10) scale(.8)" opacity=".4" fill="#761B30"/>
+    <use href="#tbc-bac" transform="translate(2 44) rotate(40) scale(.7)" opacity=".35"/>
+  </g>
+</svg>

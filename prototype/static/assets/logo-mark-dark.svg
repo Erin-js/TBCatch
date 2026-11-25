@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-8 -4 124 124" role="img" aria-label="TBCatch">
+  <defs>
+    <linearGradient id="tbc-l" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F6A9BA"/><stop offset=".5" stop-color="#F06A80"/><stop offset="1" stop-color="#E8455E"/>
+    </linearGradient>
+    <linearGradient id="tbc-r" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F6A9BA"/><stop offset=".5" stop-color="#F06A80"/><stop offset="1" stop-color="#E8455E"/>
+    </linearGradient>
+    <linearGradient id="tbc-t" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F6A9BA"/><stop offset="1" stop-color="#D3263F"/>
+    </linearGradient>
+    <rect id="tbc-bac" x="-6.5" y="-2.4" width="13" height="4.8" rx="2.4"/>
+  </defs>
+  <!-- trakea -->
+  <rect x="56.5" y="8" width="7" height="30" rx="3.5" fill="url(#tbc-t)"/>
+  <!-- paru -->
+  <path d="M51 36C38 33 22 46 16 66c-5 18-3 34 8 39 10 4 20 0 26-6 3-3 4-9 4-15V42c0-4-1-6-3-6Z" fill="url(#tbc-l)"/>
+  <path d="M69 36c13-3 29 10 35 30 5 18 3 34-8 39-10 4-20 0-26-6-3-3-4-9-4-15V42c0-4 1-6 3-6Z" fill="url(#tbc-r)"/>
+  <!-- bronkus (versi latar gelap) -->
+  <path d="M60 34c0 10-5 14-13 20M60 34c0 10 5 14 13 20" fill="none" stroke="#761B30" stroke-width="3.4" stroke-linecap="round"/>
+  <!-- basil TB (berbentuk batang) yang terlepas -->
+  <g fill="#F6A9BA">
+    <use href="#tbc-bac" transform="translate(13 52) rotate(-35)"/>
+    <use href="#tbc-bac" transform="translate(9 70) rotate(20)" opacity=".85"/>
+    <use href="#tbc-bac" transform="translate(4 58) rotate(70)" opacity=".6" fill="#F6EEE3"/>
+    <use href="#tbc-bac" transform="translate(6 86) rotate(-50)" opacity=".7"/>
+    <use href="#tbc-bac" transform="translate(-2 74) rotate(10) scale(.8)" opacity=".4" fill="#F6EEE3"/>
+    <use href="#tbc-bac" transform="translate(2 44) rotate(40) scale(.7)" opacity=".35"/>
+  </g>
+</svg>
